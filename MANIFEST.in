@@ -1,0 +1,7 @@
+include design-qa.md
+include README.md LICENSE CONTRIBUTING.md CHANGELOG.md requirements-lock.txt
+recursive-include docs *.md *.png *.svg *.json
+recursive-include scripts *.py
+recursive-include results *.json *.csv *.md *.png *.svg *.joblib *.zip *.txt
+recursive-include src/demand_forecast/static *
+global-exclude __pycache__ *.py[cod]

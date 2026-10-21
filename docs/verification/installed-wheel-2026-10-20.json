@@ -1,0 +1,15 @@
+{
+  "kind": "demand",
+  "version": "0.1.1",
+  "import_path": "D:\\Projects\\applied-ai-portfolio\\demand-forecast\\work\\audit-fix\\wheel-installed\\demand_forecast\\__init__.py",
+  "wheel": "demand_forecast-0.1.1-py3-none-any.whl",
+  "wheel_sha256": "44d1ef8ec7dda872027cd9bf9210fd3fbeccb4df5c1335d44206838bd5142b76",
+  "checks": [
+    "import resolves to isolated wheel target",
+    "installed Evaluation asset",
+    "installed HTTP paired diagnostic",
+    "installed real 24-hour forecast and OpenAPI"
+  ],
+  "status": "pass",
+  "scope": "Isolated --target package, existing project dependencies; loopback HTTP only"
+}

@@ -1,0 +1,90 @@
+{
+  "unchanged_original_result_files": 21,
+  "all_sha256_match": true,
+  "files": {
+    "results/artifact.json": {
+      "sha256": "ad31432d8e159e9a0f93536d0d25a2a11c909b6a079121bfb6d2b06fd9975a97",
+      "unchanged": true
+    },
+    "results/data_validation.json": {
+      "sha256": "8cb4555d4518a7298587d922fee537f6f84c8380282a31f299cb0469afdeeb15",
+      "unchanged": true
+    },
+    "results/metrics.json": {
+      "sha256": "00c7492444f640c3916493b4d972ad72d360a435935b1d8a95e85ec02588f479",
+      "unchanged": true
+    },
+    "results/model.joblib": {
+      "sha256": "7a88ee35b4c42f10f29ba96c7481aa82029909108971f25cdcd78027628e6e4f",
+      "unchanged": true
+    },
+    "results/observations.csv": {
+      "sha256": "5e346e80977f3fee5f774f2f723617b57c9e2e94f99502da45d70a32b4a4b0b9",
+      "unchanged": true
+    },
+    "results/predictions.csv": {
+      "sha256": "1d3bb7610d03e41571fd350cfe2b04822b1eb693e7d18ed12efaee5da47f812c",
+      "unchanged": true
+    },
+    "results/protocol.json": {
+      "sha256": "52d7c18d4b50533a71807d07e4d77df566b2c3b82ac5b273ec3d8d7865bb1808",
+      "unchanged": true
+    },
+    "results/report.md": {
+      "sha256": "cf51d4724097542bbe226ce3c001c4749a4fc9a0ba66eabe8a1404c6273b0662",
+      "unchanged": true
+    },
+    "results/selection.json": {
+      "sha256": "ee2919865fd4a2939650bc22d92f1296bd875432bf2b8a49debcd327d3ab077d",
+      "unchanged": true
+    },
+    "results/source_manifest.json": {
+      "sha256": "25c0bd1b56228736bb2be3991720d15470e9c406330b034fc0e30d94515f2859",
+      "unchanged": true
+    },
+    "results/splits.csv": {
+      "sha256": "0fc1cccdd55d07e24b813d275f5ce8d1676ec4d0340eedc1a171122d463e83dd",
+      "unchanged": true
+    },
+    "results/split_manifest.json": {
+      "sha256": "98b7c92ef7fd8f4386274183f436d3fe84d30975aebfc170656b2231a84212ad",
+      "unchanged": true
+    },
+    "results/figures/chronological-split.png": {
+      "sha256": "1f4b379e942e10c664efd0e7d795c2fae234e996d4ebe38062708c9055f67247",
+      "unchanged": true
+    },
+    "results/figures/chronological-split.svg": {
+      "sha256": "f3f332888cdf23b0d2aa53fbde73044ae378d0235232dd6baa037868c6f8ed38",
+      "unchanged": true
+    },
+    "results/figures/forecast-example.png": {
+      "sha256": "40bdd3d6142775941c180a6c5554b0779d7a053981b0a7c295f767bcaf16293b",
+      "unchanged": true
+    },
+    "results/figures/forecast-example.svg": {
+      "sha256": "9a950c0cdeac06b98773c637d66e1db4b72e4fb8d05f48068219e612b8f01074",
+      "unchanged": true
+    },
+    "results/figures/validation-comparison.png": {
+      "sha256": "6e251a941ee804629e3d8ddf11ae67b2192b6e56ba4b5d8287d7aad55d4a0942",
+      "unchanged": true
+    },
+    "results/figures/validation-comparison.svg": {
+      "sha256": "db1454f8032a4a6559ae4f9fb3202f3496c937ef7d7d243c8d106d6cbd7b9eea",
+      "unchanged": true
+    },
+    "results/source/bike-sharing-dataset.zip": {
+      "sha256": "b70182d0d0508e9abbb79306ce5c0cec34869000f8220175ac83d11dbe845401",
+      "unchanged": true
+    },
+    "results/source/hour.csv": {
+      "sha256": "e03de4ee4ef4dc376ac6e04bf829673c6269e8eba5c60fa121640fa2f829504f",
+      "unchanged": true
+    },
+    "results/source/Readme.txt": {
+      "sha256": "b92c8628622948bf0828c43a1b315d1517c3d7fd63654730d0dea379b8e88175",
+      "unchanged": true
+    }
+  }
+}

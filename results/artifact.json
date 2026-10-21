@@ -1,0 +1,19 @@
+{
+  "file": "model.joblib",
+  "sha256": "7a88ee35b4c42f10f29ba96c7481aa82029909108971f25cdcd78027628e6e4f",
+  "observations_sha256": "5e346e80977f3fee5f774f2f723617b57c9e2e94f99502da45d70a32b4a4b0b9",
+  "predictions_sha256": "1d3bb7610d03e41571fd350cfe2b04822b1eb693e7d18ed12efaee5da47f812c",
+  "source_sha256": "e03de4ee4ef4dc376ac6e04bf829673c6269e8eba5c60fa121640fa2f829504f",
+  "protocol_sha256": "eaef2a814bfdcd28565db81b4dde6d0601ac35251ce0b607f0ed863b42933e09",
+  "selected_model": "ridge",
+  "python": "3.12.14",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "joblib": "1.6.0"
+  },
+  "purpose": "Trusted local artifact; never deserialize untrusted joblib files.",
+  "fit_end_exclusive": "2012-08-07"
+}

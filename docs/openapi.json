@@ -1,0 +1,371 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DemandForecast local API",
+    "version": "0.1.1",
+    "description": "No API key. Runs on loopback. Models and datasets are local; no paid external inference API."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Local service status",
+        "responses": {
+          "200": {
+            "description": "Recorded or live response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evidence": {
+      "get": {
+        "summary": "Available recorded evidence downloads",
+        "responses": {
+          "200": {
+            "description": "Recorded or live response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/meta": {
+      "get": {
+        "summary": "Available replay origins, selected model and source",
+        "responses": {
+          "200": {
+            "description": "Recorded or live response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluation": {
+      "get": {
+        "summary": "Recorded final holdout metrics",
+        "responses": {
+          "200": {
+            "description": "Recorded or live response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/diagnostics": {
+      "get": {
+        "summary": "Hash-checked paired test MAE by month, target hour and day",
+        "responses": {
+          "200": {
+            "description": "Recorded or live response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/forecast": {
+      "post": {
+        "summary": "Generate 24 hourly predictions",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "origin"
+                ],
+                "properties": {
+                  "origin": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Daily midnight forecast origin"
+                  },
+                  "history": {
+                    "type": "array",
+                    "maxItems": 10000,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "timestamp",
+                        "count"
+                      ],
+                      "properties": {
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "count": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10000000
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "description": "Optional custom observed hours strictly before origin; does not use archive history"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "example": {
+                "origin": "2012-11-01"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful calculation, including valid abstention or unreachable results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "origin",
+                    "horizon_hours",
+                    "kind",
+                    "selected_model",
+                    "warnings",
+                    "rows"
+                  ],
+                  "properties": {
+                    "origin": {
+                      "type": "string"
+                    },
+                    "horizon_hours": {
+                      "const": 24
+                    },
+                    "kind": {
+                      "enum": [
+                        "historical_replay",
+                        "custom_history"
+                      ]
+                    },
+                    "selected_model": {
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "rows": {
+                      "type": "array",
+                      "minItems": 24,
+                      "maxItems": 24,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "timestamp",
+                          "horizon",
+                          "prediction",
+                          "baseline",
+                          "actual",
+                          "lag24_observed",
+                          "lag168_observed"
+                        ],
+                        "properties": {
+                          "timestamp": {
+                            "type": "string"
+                          },
+                          "horizon": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 23
+                          },
+                          "prediction": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "baseline": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "actual": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "minimum": 0
+                          },
+                          "lag24_observed": {
+                            "type": "boolean"
+                          },
+                          "lag168_observed": {
+                            "type": "boolean"
+                          },
+                          "baseline_source": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "field": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Invalid host or cross-origin request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "field": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body exceeds 256 KiB",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "field": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Expected application/json",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "field": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Calculation failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "field": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "primary_metric": "mae",
+  "train_validation_test_day_fractions": [
+    0.6,
+    0.2,
+    0.2
+  ],
+  "origin": "daily midnight",
+  "horizon_hours": 24,
+  "warmup_days": 7,
+  "features": [
+    "hour_sin",
+    "hour_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "month_sin",
+    "month_cos",
+    "weekend",
+    "lag24",
+    "lag168",
+    "lag24_missing",
+    "lag168_missing"
+  ],
+  "calendar": "hour, weekday, month cycles and weekend; no holidays or actual future weather",
+  "lag_semantics": "exact naive-local timestamp lookups at 24 and 168 hours before each target",
+  "availability": "counts strictly before origin; previous 23:00 count assumed available at midnight",
+  "missing": "unknown targets excluded from every score; training-only lag median and fixed indicators",
+  "baseline": "lag168, then lag24, then training target-hour median, then training overall median",
+  "candidates": {
+    "seasonal_naive": {},
+    "ridge": {
+      "alpha": 10
+    },
+    "hist_gradient_boosting": {
+      "loss": "squared_error",
+      "learning_rate": 0.1,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "l2_regularization": 1,
+      "early_stopping": false,
+      "random_state": 42
+    }
+  },
+  "selection": "lowest validation MAE; ties within 1e-12: baseline, Ridge, boosting",
+  "postprocess": "clip below zero, no rounding",
+  "final_test": "selected candidate refit on development; fixed baseline; rolling observed history; no parameter updates",
+  "uncertainty": "no prediction intervals or population uncertainty claim"
+}

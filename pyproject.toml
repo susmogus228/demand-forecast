@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "demand-forecast"
+version = "0.1.1"
+description = "Leakage-aware day-ahead bicycle demand forecasting with a local API"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = ["numpy==2.5.4", "pandas==3.0.6", "scipy==1.18.1", "scikit-learn==1.9.0", "joblib==1.6.0", "matplotlib==3.11.2", "threadpoolctl>=3.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=9", "build>=1.2"]
+
+[project.scripts]
+demand-forecast = "demand_forecast.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+demand_forecast = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

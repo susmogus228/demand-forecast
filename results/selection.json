@@ -1,0 +1,17 @@
+{
+  "partition": "validation",
+  "metric": "mae",
+  "selected_model": "ridge",
+  "scores": {
+    "seasonal_naive": 62.23557966876071,
+    "ridge": 60.768128641308664,
+    "hist_gradient_boosting": 66.32397082276457
+  },
+  "tie_tolerance": 1e-12,
+  "tie_order": [
+    "seasonal_naive",
+    "ridge",
+    "hist_gradient_boosting"
+  ],
+  "protocol_sha256": "eaef2a814bfdcd28565db81b4dde6d0601ac35251ce0b607f0ed863b42933e09"
+}

@@ -1,0 +1,46 @@
+{
+  "checks": 23,
+  "cases": [
+    "live diagnostic contains 3488 paired targets",
+    "visible loss counts match the saved predictions",
+    "all five monthly slices shown",
+    "all 24 target hours shown",
+    "all 147 daily slices remain inspectable",
+    "08:00 loss has the correct sign and magnitude",
+    "August model loss is visible",
+    "overall gain is distinct from slice failures",
+    "model selection remains tied to validation",
+    "diagnostics-json is collapsed by default",
+    "evaluation-json is collapsed by default",
+    "no document overflow at CSS width 304",
+    "no document overflow at CSS width 375",
+    "no document overflow at CSS width 768",
+    "no document overflow at CSS width 1280",
+    "signed monthly delta is visible without horizontal scrolling at 304 px",
+    "diagnostic failure hides stale results and permits retry",
+    "diagnostic failure does not break forecasting",
+    "empty data is not rendered as zero model error",
+    "diagnostics recover after service and empty-data failures",
+    "API setup completes while optional diagnostic is pending",
+    "forecast is available before optional diagnostic resolves",
+    "no uncaught page errors"
+  ],
+  "geometry": [
+    {
+      "requested": 304,
+      "actual": 304
+    },
+    {
+      "requested": 375,
+      "actual": 375
+    },
+    {
+      "requested": 768,
+      "actual": 768
+    },
+    {
+      "requested": 1280,
+      "actual": 1280
+    }
+  ]
+}
